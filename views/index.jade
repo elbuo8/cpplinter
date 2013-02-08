@@ -1,0 +1,35 @@
+doctype 5
+html
+	head
+		title CPP Linter
+		script(src='js/jquery-1.8.3.min.js')
+
+	block style
+		style
+			textarea {
+				width: 600px;
+				height : 300px;
+			}
+		
+
+	block script
+		script
+			$(document).ready(function() {
+				$('#lintCode').live('click', function() {
+					$.post('/lint', {data: $('#code').val()}, function(result) {
+
+						$('#error').text(result['2']);
+					});
+				});
+			});
+			
+
+	body
+		div
+			textarea(type='textarea', name='code', placeholder = 'code here', id="code")
+		div
+			button#lintCode(type='button') Check
+			br
+			br
+			
+		#error
